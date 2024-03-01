@@ -22,8 +22,9 @@ export class EntityGroupStatus extends LitElement {
             _scores: { type: Array, state: true },
             _entities: { type: Object, state: true },
             _maximumScore: { type: String, state: true },
-            _mainIconScoreColor: { type: String, state: true },
-            _actions: { type: Object, state: true }
+            _mainIconScoreColor: { type: Boolean, state: true },
+            _actions: { type: Object, state: true },
+            _dateFormat: { type: Object, state: true }
         }
     }
 
@@ -41,6 +42,7 @@ export class EntityGroupStatus extends LitElement {
         this._mainIconScoreColor = config.iconScoreColor ?? false;
         this._mainTitle = config.title ?? null;
         this._actions = config.actions ?? null;
+        this._dateFormat = config.dateFormat ?? {};
         this._initializeScores(config.scores);
         this._initializeEntities(config.entities ?? {});
     }
@@ -175,7 +177,13 @@ export class EntityGroupStatus extends LitElement {
         }
         const title = entity.title ?? '';
         const icon = entity.icon ?? 'mdi:alpha-x';
-        const state = entity.state ?? 'Unknown';
+        let state = entity.state ?? 'Unknown';
+        if (entity.configuration.stateConvert === 'date' && state !== 'Unknown') {
+            state = state.toLocaleDateString(
+                this._dateFormat.locale ?? navigator.language ?? 'en-US',
+                this._dateFormat.options ?? {}
+            );
+        }
         const unit = entity.unit ?? '';
         let color = 'inherit';
         if (score && this._scores[score]) {
@@ -183,7 +191,7 @@ export class EntityGroupStatus extends LitElement {
         }
         let actions = null;
         if (entity.configuration.actions) {
-            actions = entity.configuration.actions;
+            actions = structuredClone(entity.configuration.actions);
             actions.entity = actions.entity ?? entity.entity;
         }
 
@@ -204,7 +212,7 @@ export class EntityGroupStatus extends LitElement {
 
         Object.entries(scoresConfiguration).forEach(([scoreKey, scoreConfiguration]) => {
             // Sanitize and check score key
-            scoreKey = this._sanitizeKey(scoreKey, true);
+            scoreKey = this._sanitizeKey(scoreConfiguration.score ?? scoreKey, true);
             if (!scoreKey) {
                 throw new Error('Invalid score configuration: missing or invalid score key');
             }
@@ -289,7 +297,7 @@ export class EntityGroupStatus extends LitElement {
                         throw new Error('Invalid entities configuration: states must be an array or not set');
                     }
 
-                    if (entity.configuration.stateConvert) {
+                    if (entity.configuration.stateConvert === 'date') {
                         entityState = chrono.parseDate(entityState);
                     }
                     for (let stateConfigurationKey in entity.configuration.states) {
@@ -303,7 +311,7 @@ export class EntityGroupStatus extends LitElement {
                         let min = stateConfiguration.min ?? false;
                         let max = stateConfiguration.max ?? false;
                         let equals = stateConfiguration.equals ?? false;
-                        if (entity.configuration.stateConvert) {
+                        if (entity.configuration.stateConvert === 'date') {
                             if (min) {
                                 min = chrono.parseDate(min);
                             }

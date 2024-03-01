@@ -1,15 +1,32 @@
 {
+  "name": "entity-group-status",
+  "version": "0.0.1-alpha",
+  "description": "Custom Home Assistant card grouping multiple entities and displaying a status text based on the state of those entities",
   "source": "src/index.js",
   "module": "dist/entity-group-status.js",
   "targets": {
     "module": {
-      "includeNodeModules": true
+      "includeNodeModules": true,
+      "optimize": true
     }
   },
   "scripts": {
     "watch": "parcel watch",
     "build": "parcel build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FamousWolf/entity-group-status.git"
+  },
+  "keywords": [
+    "lovelace"
+  ],
+  "author": "Rudy Gnodde",
+  "licence": "MIT",
+  "bugs": {
+    "url": "https://github.com/FamousWolf/entity-group-status/issues"
+  },
+  "homepage": "https://github.com/FamousWolf/entity-group-status",
   "devDependencies": {
     "@parcel/transformer-inline-string": "^2.11.0",
     "parcel": "^2.11.0"
