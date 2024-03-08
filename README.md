@@ -31,7 +31,9 @@ Custom Home Assistant card grouping multiple entities and displaying a status te
 
 ### HACS (Recommended)
 
-@todo
+1. Make sure [HACS](https://hacs.xyz) is installed and working.
+2. Add this repository (https://github.com/FamousWolf/entity-group-status) via [HACS Custom repositories](https://hacs.xyz/docs/faq/custom_repositories)
+3. Download and install using HACS
 
 ### Manual
 
