@@ -41,7 +41,7 @@ Custom Home Assistant card grouping multiple entities and displaying a status te
     Add:
     ```yaml
     resources:
-      - url: /local/entity-group-status.js?version=0.0.1-alpha
+      - url: /local/entity-group-status.js?version=0.0.2
     type: module
     ```
   - **Using the graphical editor**
