@@ -9,9 +9,47 @@ Custom Home Assistant card grouping multiple entities and displaying a status te
 
 ![Example Entity Group Status Cards](examples/cards.png)
 
+## Table of Content
+
+- [Installation](#installation)
+  - [HACS (Recommended)](#hacs-recommended)
+  - [Manual](#manual)
+- [Configuration](#configuration)
+  - [Main options](#main-options)
+  - [Scores](#scores)
+  - [Entities](#entities)
+  - [Entity states](#entity-states)
+  - [Date format](#date-format)
+  - [Actions](#actions)
+- [Examples](#examples)
+  - [Battery charge](#battery-charge)
+  - [Air quality](#air-quality)
+  - [Washing machine and dryer status](#washing-machine-and-dryer-status)
+  - [Garbage pickup dates](#garbage-pickup-dates)
+
 ## Installation
 
+### HACS (Recommended)
+
 @todo
+
+### Manual
+
+1. Download and copy `entity-group-status.js` from the [latest release](https://github.com/FamousWolf/entity-group-status/releases/latest) into your `config/www` directory.
+2. Add the resource reference to Home Assistant configuration using one of these methods:
+  - **Edit your configuration.yaml**
+    Add:
+    ```yaml
+    resources:
+      - url: /local/entity-group-status.js?version=0.0.1-alpha
+    type: module
+    ```
+  - **Using the graphical editor**
+    1. Make sure advanced mode is enabled in your user profile
+    2. Navigate to Configuration -> Lovelace Dashboards -> Resources Tab. Hit orange (+) icon
+    3. Enter URL `/local/entity-group-status.js` and select type "JavaScript Module".
+    4. Restart Home Assistant.
+
 
 ## Configuration
 
@@ -48,7 +86,7 @@ Custom Home Assistant card grouping multiple entities and displaying a status te
 | `actions`      | object      | optional     | See [Actions](#actions)             | Actions for the entity                               |
 | `stateConvert` | string      | optional     | `date`                              | Convert entity state. Currently only supports `date` |
 
-### Entity States
+### Entity states
 
 | Name     | Type             | Default      | Supported options                                  | Description                    |
 |----------|------------------|--------------|----------------------------------------------------|--------------------------------|
