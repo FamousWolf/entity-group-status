@@ -79,14 +79,14 @@ Custom Home Assistant card grouping multiple entities and displaying a status te
 
 ### Entities
 
-| Name           | Type        | Default      | Supported options                   | Description                                          |
-|----------------|-------------|--------------|-------------------------------------|------------------------------------------------------|
-| `entity`       | string      | **Required** | `sensor.my_sensor_id`               | Entity ID                                            |
-| `title`        | string      | optional     | Any string                          | Title of the entity                                  |
-| `icon`         | string      | optional     | `mdi:battery`                       | Icon of the entity                                   |
-| `states`       | object list | optional     | See [Entity states](#entity-states) | States of the entity                                 |
-| `actions`      | object      | optional     | See [Actions](#actions)             | Actions for the entity                               |
-| `stateConvert` | string      | optional     | `date`                              | Convert entity state. Currently only supports `date` |
+| Name           | Type        | Default      | Supported options                    | Description                                          |
+|----------------|-------------|--------------|--------------------------------------|------------------------------------------------------|
+| `entity`       | string      | **Required** | `sensor.my_sensor_id`                | Entity ID                                            |
+| `title`        | string      | optional     | Any string                           | Title of the entity, overriding default entity title |
+| `icon`         | string      | optional     | `mdi:battery`                        | Icon of the entity, overriding default entity entity |
+| `states`       | object list | optional     | See [Entity states](#entity-states)  | States of the entity                                 |
+| `actions`      | object      | optional     | See [Actions](#actions)              | Actions for the entity                               |
+| `stateConvert` | string      | optional     | `date`                               | Convert entity state. Currently only supports `date` |
 
 ### Entity states
 
