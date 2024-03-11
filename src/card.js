@@ -263,7 +263,9 @@ export class EntityGroupStatus extends LitElement {
             entities[entityId] = {
                 entity: entityId,
                 title: entityConfiguration.title ?? '',
+                titleOverride: !!entityConfiguration.title,
                 icon: entityConfiguration.icon ?? '',
+                iconOverride: !!entityConfiguration.icon,
                 score: this._entities[entityId] ? this._entities[entityId].score : null,
                 state: this._entities[entityId] ? this._entities[entityId].state : null,
                 unit: this._entities[entityId] ? this._entities[entityId].unit : null,
@@ -291,6 +293,8 @@ export class EntityGroupStatus extends LitElement {
             let entityState = entityStateObject ? entityStateObject.state ?? false : false;
             const entityUnit = entityStateObject ? entityStateObject.attributes.unit_of_measurement ?? '' : '';
             let entityScoreKey = '';
+            const entityStateIcon = entityStateObject ? entityStateObject.attributes.icon ?? '' : '';
+            const entityStateName = entityStateObject ? entityStateObject.attributes.friendly_name ?? '' : '';
             if (entityState !== false) {
                 if (entity.configuration.states) {
                     if (!Array.isArray(entity.configuration.states)) {
@@ -357,6 +361,13 @@ export class EntityGroupStatus extends LitElement {
             this._entities[entityId].score = entityScoreKey;
             this._entities[entityId].state = entityState;
             this._entities[entityId].unit = entityUnit;
+
+            if (this._entities[entityId].iconOverride === false && entityStateIcon) {
+                this._entities[entityId].icon = entityStateIcon;
+            }
+            if (this._entities[entityId].titleOverride === false && entityStateName) {
+                this._entities[entityId].title = entityStateName;
+            }
         });
         this._maximumScore = maximumScore;
         if (entityStateChanged) {
