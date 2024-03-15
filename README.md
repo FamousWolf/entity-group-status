@@ -4,6 +4,7 @@
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/FamousWolf/entity-group-status/total)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/FamousWolf/entity-group-status)
 ![GitHub License](https://img.shields.io/github/license/FamousWolf/entity-group-status)
+[![Static Badge](https://img.shields.io/badge/-buy_me_a_tea-gray?logo=buy-me-a-coffee)](https://www.buymeacoffee.com/rudygnodde)
 
 Custom Home Assistant card grouping multiple entities and displaying a status text based on the state of those entities.
 
